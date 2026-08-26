@@ -4,217 +4,197 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Angkur Mondal — Portfolio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --sidebar-bg: #14202B;
-    --sidebar-ink: #FFFFFF;
-    --sidebar-ink-dim: #C3CBD2;
-    --sidebar-line: rgba(255,255,255,0.14);
-    --amber: #E7B563;
-    --amber-onlight: #92620F;
+    --sidebar-bg: #FAFAFC;
+    --sidebar-border: #E4E4E9;
+    --ink: #14161A;
+    --ink-soft: #4B4F56;
+    --ink-faint: #767C85;
+    --line: #E7E7EC;
     --main-bg: #FFFFFF;
-    --panel-bg: #F7F6F2;
-    --ink: #16191D;
-    --ink-soft: #3D4349;
-    --ink-faint: #5B6167;
-    --line: #E2DFD8;
-    --ios-blue: #0B7FE0;
-    --font-serif: 'Literata', Georgia, serif;
-    --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    --sidebar-w: 320px;
-    --radius: 16px;
+    --accent: #1D5FD6;
+    --accent-soft: #EAF1FE;
+    --danger: #D6401D;
+    --radius: 12px;
+    --font-ui: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --sidebar-w: 296px;
   }
 
-  *{ box-sizing:border-box; margin:0; padding:0; -webkit-tap-highlight-color:transparent; }
-  html{ scroll-behavior:smooth; scrollbar-width:thin; scrollbar-color: rgba(0,0,0,0.28) transparent; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
   body{
-    font-family:var(--font-sans);
+    font-family:var(--font-ui);
+    font-size:15px;
+    line-height:1.5;
     color:var(--ink);
-    background:var(--panel-bg);
-    font-size:19px;
-    line-height:1.65;
+    background:var(--main-bg);
     -webkit-font-smoothing:antialiased;
   }
   a{ color:inherit; text-decoration:none; }
-  ::selection{ background:var(--amber); color:#14202B; }
+  ::selection{ background:var(--accent-soft); color:var(--accent); }
 
-  /* thin scrollbars everywhere (webkit) */
-  ::-webkit-scrollbar{ width:6px; height:6px; }
-  ::-webkit-scrollbar-track{ background:transparent; }
-  ::-webkit-scrollbar-thumb{ background:rgba(0,0,0,0.28); border-radius:10px; }
-  .sidebar::-webkit-scrollbar-thumb{ background:rgba(255,255,255,0.22); }
-  .sidebar{ scrollbar-color: rgba(255,255,255,0.22) transparent; }
+  /* thin scrollbars */
+  *{ scrollbar-width:thin; scrollbar-color:#C6C8CE transparent; }
+  *::-webkit-scrollbar{ width:6px; height:6px; }
+  *::-webkit-scrollbar-track{ background:transparent; }
+  *::-webkit-scrollbar-thumb{ background:#C6C8CE; border-radius:10px; }
+  *::-webkit-scrollbar-thumb:hover{ background:#AEB1B8; }
 
-  .page-wrap{
-    max-width:1280px;
-    margin:0 auto;
-    display:flex;
-    background:var(--main-bg);
-    min-height:100vh;
-    box-shadow:0 0 60px rgba(0,0,0,0.05);
-  }
+  .layout{ display:flex; min-height:100vh; }
 
   /* ---------------- SIDEBAR ---------------- */
   .sidebar{
-    flex:0 0 var(--sidebar-w);
+    position:fixed;
+    top:0; left:0; bottom:0;
     width:var(--sidebar-w);
-    position:sticky;
-    top:0;
-    align-self:flex-start;
-    height:100vh;
     background:var(--sidebar-bg);
-    color:var(--sidebar-ink);
-    padding:48px 34px 30px;
+    border-right:1px solid var(--sidebar-border);
+    padding:36px 26px 22px;
     display:flex;
     flex-direction:column;
     overflow-y:auto;
-    opacity:0;
-    animation:fadeIn 0.6s ease forwards;
   }
 
-  .avatar-wrap{ margin-bottom:20px; }
   .avatar{
-    width:104px; height:104px;
+    width:76px; height:76px;
     border-radius:50%;
     object-fit:cover;
     display:block;
-    border:3px solid rgba(255,255,255,0.9);
-    box-shadow:0 6px 20px rgba(0,0,0,0.35);
+    border:1px solid var(--sidebar-border);
+    margin-bottom:16px;
   }
 
   .sidebar h1{
-    font-family:var(--font-serif);
+    font-size:1.28rem;
     font-weight:700;
-    font-size:1.7rem;
-    line-height:1.25;
-    margin-bottom:10px;
-    color:#FFFFFF;
+    letter-spacing:-0.01em;
+    color:var(--ink);
+    margin-bottom:6px;
   }
 
   .sidebar .tagline{
-    font-size:0.98rem;
-    color:var(--sidebar-ink-dim);
-    line-height:1.55;
-    margin-bottom:20px;
+    font-size:0.88rem;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin-bottom:16px;
   }
 
   .resume-btn{
-    display:flex;
+    display:inline-flex;
     align-items:center;
-    justify-content:center;
-    gap:8px;
-    width:100%;
-    padding:13px 16px;
-    background:var(--amber);
-    color:#1A1300;
-    font-family:var(--font-sans);
+    gap:6px;
+    font-size:0.83rem;
     font-weight:600;
-    font-size:0.93rem;
-    border:none;
-    border-radius:12px;
+    color:var(--accent);
+    background:var(--accent-soft);
+    border:1px solid transparent;
+    padding:9px 14px;
+    border-radius:999px;
     cursor:pointer;
-    margin-bottom:30px;
-    transition:transform 0.18s cubic-bezier(.34,1.56,.64,1), filter 0.2s;
+    transition:background 0.2s, transform 0.15s;
+    margin-bottom:22px;
+    width:fit-content;
   }
-  .resume-btn:hover{ filter:brightness(1.06); }
+  .resume-btn:hover{ background:#DCE8FD; }
   .resume-btn:active{ transform:scale(0.97); }
-  .resume-btn svg{ width:16px; height:16px; }
+  .resume-btn svg{ width:13px; height:13px; }
 
   .side-block{
-    margin-bottom:28px;
-    padding-top:24px;
-    border-top:1px solid var(--sidebar-line);
+    padding-top:16px;
+    margin-top:16px;
+    border-top:1px solid var(--line);
   }
-  .side-block:first-of-type{ border-top:none; padding-top:0; }
+  .side-block:first-of-type{ border-top:none; padding-top:0; margin-top:0; }
 
   .side-label{
-    font-size:11.5px;
+    font-size:10.5px;
     font-weight:700;
-    letter-spacing:0.1em;
+    letter-spacing:0.08em;
     text-transform:uppercase;
-    color:var(--amber);
-    margin-bottom:14px;
+    color:var(--ink-faint);
+    margin-bottom:10px;
   }
 
   .interest-list{ list-style:none; }
   .interest-list li{
-    font-size:0.95rem;
-    color:#FFFFFF;
-    padding:5px 0;
-    line-height:1.5;
+    font-size:0.86rem;
+    color:var(--ink-soft);
+    padding:3px 0;
   }
 
-  .skill-group{ margin-bottom:14px; }
+  .skill-group{ margin-bottom:9px; }
   .skill-group:last-child{ margin-bottom:0; }
   .skill-group .cat{
-    font-size:0.79rem;
-    color:var(--sidebar-ink-dim);
-    margin-bottom:5px;
+    font-size:0.72rem;
     font-weight:600;
+    color:var(--ink-faint);
+    margin-bottom:2px;
   }
   .skill-group .vals{
-    font-size:0.95rem;
-    color:#FFFFFF;
-    line-height:1.5;
+    font-size:0.86rem;
+    color:var(--ink-soft);
+    line-height:1.45;
   }
 
   .side-footer{
     margin-top:auto;
-    padding-top:24px;
-    border-top:1px solid var(--sidebar-line);
+    padding-top:16px;
+    border-top:1px solid var(--line);
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:6px;
   }
   .side-footer a{
-    font-size:0.9rem;
-    color:var(--sidebar-ink-dim);
-    transition:color 0.25s;
+    font-size:0.81rem;
+    color:var(--ink-faint);
+    transition:color 0.2s;
   }
-  .side-footer a:hover{ color:var(--amber); }
+  .side-footer a:hover{ color:var(--accent); }
 
   /* ---------------- MAIN ---------------- */
   .main{
+    margin-left:var(--sidebar-w);
     flex:1;
-    min-width:0;
-    padding:72px 64px 100px;
-    max-width:820px;
+    display:flex;
+    justify-content:center;
+  }
+  .main-inner{
+    width:100%;
+    max-width:640px;
+    padding:44px 32px 64px;
   }
 
-  section{ margin-bottom:76px; }
-  section:last-child{ margin-bottom:40px; }
+  section{ margin-bottom:42px; }
+  section:last-child{ margin-bottom:24px; }
 
   .sec-label{
-    font-size:11.5px;
+    font-size:10.5px;
     font-weight:700;
-    letter-spacing:0.12em;
+    letter-spacing:0.08em;
     text-transform:uppercase;
-    color:var(--amber-onlight);
-    margin-bottom:10px;
+    color:var(--accent);
+    margin-bottom:5px;
   }
   h2{
-    font-family:var(--font-serif);
+    font-size:1.32rem;
     font-weight:700;
-    font-size:1.75rem;
-    color:var(--ink);
-    margin-bottom:26px;
-  }
-
-  #about p{
-    font-family:var(--font-serif);
-    font-size:1.16rem;
-    line-height:1.8;
+    letter-spacing:-0.01em;
     color:var(--ink);
     margin-bottom:16px;
   }
+
+  #about p{
+    font-size:0.98rem;
+    line-height:1.62;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
   #about p:last-child{ margin-bottom:0; }
-  #about a{ color:var(--amber-onlight); border-bottom:1px solid currentColor; }
+  #about strong{ color:var(--ink); font-weight:600; }
 
   .item{
-    padding:26px 0;
+    padding:16px 0;
     border-top:1px solid var(--line);
   }
   .item:first-of-type{ border-top:none; padding-top:0; }
@@ -223,280 +203,232 @@
     justify-content:space-between;
     align-items:baseline;
     flex-wrap:wrap;
-    gap:6px;
-    margin-bottom:6px;
+    gap:4px;
+    margin-bottom:3px;
   }
   .item-head h3{
-    font-family:var(--font-serif);
+    font-size:1.02rem;
     font-weight:700;
-    font-size:1.22rem;
     color:var(--ink);
   }
   .item-head time{
-    font-size:0.85rem;
+    font-size:0.76rem;
     color:var(--ink-faint);
     white-space:nowrap;
-    font-weight:600;
   }
   .item .org{
-    font-size:0.98rem;
-    color:var(--amber-onlight);
-    margin-bottom:12px;
-    display:block;
-    font-weight:600;
-  }
-  .item .org a{ color:inherit; border-bottom:1px solid currentColor; }
-  .item .org a:hover{ color:var(--ink); }
-  .item ul{ padding-left:19px; }
-  .item li{
-    font-size:1rem;
+    font-size:0.88rem;
     color:var(--ink-soft);
-    line-height:1.65;
-    margin-bottom:6px;
+    margin-bottom:8px;
+    display:block;
+  }
+  .item .org a{ color:var(--accent); font-weight:600; }
+  .item .org a:hover{ text-decoration:underline; }
+  .item ul{ padding-left:16px; }
+  .item li{
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    line-height:1.55;
+    margin-bottom:3px;
   }
   .item p.desc{
-    font-size:1rem;
+    font-size:0.92rem;
     color:var(--ink-soft);
-    line-height:1.65;
+    line-height:1.55;
   }
   .item .stack{
-    margin-top:10px;
-    font-size:0.85rem;
+    margin-top:8px;
+    font-size:0.78rem;
     color:var(--ink-faint);
-    font-weight:600;
   }
-
-  .course-tags{ display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
-  .course-tags span{
-    font-size:0.85rem;
-    padding:6px 13px;
-    background:var(--panel-bg);
-    border:1px solid var(--line);
-    border-radius:20px;
-    color:var(--ink-soft);
-    font-weight:500;
-  }
-
-  /* image stack */
-  .image-stack{
+  .course-list{
     display:flex;
-    margin-top:16px;
-    height:88px;
-    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:8px;
   }
-  .image-stack button.thumb{
-    width:96px; height:72px;
-    border-radius:10px;
-    border:2px solid #fff;
-    box-shadow:0 3px 10px rgba(0,0,0,0.18);
-    overflow:hidden;
-    padding:0;
-    cursor:pointer;
-    background:#eee;
-    margin-left:-26px;
-    transition:transform 0.25s cubic-bezier(.34,1.56,.64,1), z-index 0s;
-    position:relative;
+  .course-list span{
+    font-size:0.76rem;
+    color:var(--ink-soft);
+    background:#F2F2F5;
+    padding:4px 9px;
+    border-radius:6px;
   }
-  .image-stack button.thumb:first-child{ margin-left:0; }
-  .image-stack button.thumb img{ width:100%; height:100%; object-fit:cover; display:block; }
-  .image-stack button.thumb:hover{ transform:translateY(-6px) rotate(0deg) scale(1.04); z-index:5; }
-  .image-stack button.thumb:nth-child(1){ transform:rotate(-4deg); }
-  .image-stack button.thumb:nth-child(2){ transform:rotate(2deg); }
-  .image-stack button.thumb:nth-child(3){ transform:rotate(-2deg); }
-  .image-stack button.thumb:nth-child(1):hover{ transform:translateY(-6px) rotate(-4deg) scale(1.04); }
-  .image-stack button.thumb:nth-child(2):hover{ transform:translateY(-6px) rotate(2deg) scale(1.04); }
-  .image-stack button.thumb:nth-child(3):hover{ transform:translateY(-6px) rotate(-2deg) scale(1.04); }
 
-  .link-row{ display:flex; gap:10px; margin-top:14px; flex-wrap:wrap; }
-  .link-pill{
+  .links-row{ display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; }
+  .links-row a{
+    font-size:0.79rem;
+    font-weight:600;
+    color:var(--accent);
+    background:var(--accent-soft);
+    padding:6px 11px;
+    border-radius:7px;
     display:inline-flex;
     align-items:center;
-    gap:7px;
-    font-size:0.86rem;
-    font-weight:600;
-    padding:9px 16px;
-    border-radius:20px;
+    gap:5px;
+  }
+  .links-row a:hover{ background:#DCE8FD; }
+
+  /* ---------------- IMAGE STACK ---------------- */
+  .img-stack{
+    display:none;
+    position:relative;
+    width:96px;
+    height:68px;
+    margin-top:12px;
+    cursor:pointer;
+  }
+  .img-stack.has-images{ display:block; }
+  .stack-tile{
+    position:absolute;
+    width:88px;
+    height:62px;
+    border-radius:8px;
+    border:1px solid #fff;
+    box-shadow:0 1px 4px rgba(20,22,26,0.14);
+    background-size:cover;
+    background-position:center;
+    background-color:#EDEDF1;
+    transition:transform 0.2s ease;
+  }
+  .stack-tile.t1{ top:6px; left:8px; transform:rotate(-6deg); z-index:1; }
+  .stack-tile.t2{ top:3px; left:4px; transform:rotate(3deg); z-index:2; }
+  .stack-tile.t3{ top:0; left:0; transform:rotate(-1deg); z-index:3; }
+  .img-stack:hover .t1{ transform:rotate(-9deg) translateY(2px); }
+  .img-stack:hover .t2{ transform:rotate(5deg) translateY(2px); }
+  .img-stack:hover .t3{ transform:rotate(-2deg) translateY(-2px); }
+  .stack-count{
+    position:absolute;
+    bottom:-4px; right:-4px;
+    z-index:4;
     background:var(--ink);
     color:#fff;
-    transition:filter 0.2s, transform 0.18s cubic-bezier(.34,1.56,.64,1);
-  }
-  .link-pill:hover{ filter:brightness(1.2); }
-  .link-pill:active{ transform:scale(0.96); }
-  .link-pill.ghost{
-    background:transparent;
-    color:var(--ink);
-    border:1.5px solid var(--line);
-  }
-  .link-pill svg{ width:13px; height:13px; }
-
-  .status-badge{
-    display:inline-block;
-    font-size:0.75rem;
+    font-size:9.5px;
     font-weight:700;
-    letter-spacing:0.03em;
-    padding:3px 10px;
-    border-radius:20px;
-    background:#FCEED3;
-    color:#8A5A00;
-    margin-left:10px;
-    vertical-align:middle;
+    padding:2px 6px;
+    border-radius:999px;
+    border:1.5px solid #fff;
   }
-
-  .reveal{
-    opacity:0;
-    transform:translateY(14px);
-    transition:opacity 0.6s ease, transform 0.6s ease;
-  }
-  .reveal.in-view{ opacity:1; transform:translateY(0); }
 
   #contact p{
-    font-family:var(--font-serif);
-    font-size:1.12rem;
-    line-height:1.75;
-    color:var(--ink);
-    margin-bottom:24px;
-    max-width:560px;
+    font-size:0.98rem;
+    line-height:1.6;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+    max-width:520px;
   }
-  .contact-row{ display:flex; flex-wrap:wrap; gap:14px; }
+  .contact-row{ display:flex; flex-wrap:wrap; gap:10px; }
   .contact-row a{
-    font-size:0.95rem;
+    font-size:0.85rem;
     font-weight:600;
-    padding:12px 22px;
-    border-radius:24px;
-    border:1.5px solid var(--line);
+    padding:9px 16px;
+    border-radius:8px;
+    border:1px solid var(--line);
     color:var(--ink);
-    transition:background 0.25s, border-color 0.25s, color 0.25s;
+    transition:background 0.2s, border-color 0.2s;
   }
-  .contact-row a:hover{
-    background:var(--ink);
-    border-color:var(--ink);
-    color:#fff;
-  }
-
-  @keyframes fadeIn{ to{ opacity:1; } }
+  .contact-row a:hover{ background:#F5F5F8; border-color:#D6D6DD; }
 
   /* ---------------- RESUME MODAL ---------------- */
   .modal-overlay{
     position:fixed; inset:0; z-index:200;
-    background:rgba(10,14,18,0.6);
-    backdrop-filter:blur(6px);
-    display:flex; align-items:center; justify-content:center;
+    background:rgba(20,22,26,0.55);
+    display:none;
+    align-items:center; justify-content:center;
     padding:24px;
-    opacity:0; visibility:hidden;
-    transition:opacity 0.28s ease, visibility 0.28s;
   }
-  .modal-overlay.open{ opacity:1; visibility:visible; }
+  .modal-overlay.open{ display:flex; }
   .modal-box{
     background:#fff;
-    border-radius:20px;
-    width:100%; max-width:820px; height:88vh;
+    border-radius:14px;
+    width:100%; max-width:720px;
+    height:85vh;
     display:flex; flex-direction:column;
     overflow:hidden;
-    box-shadow:0 30px 80px rgba(0,0,0,0.4);
-    transform:translateY(16px) scale(0.98);
-    transition:transform 0.3s cubic-bezier(.22,1,.36,1);
+    box-shadow:0 20px 60px rgba(0,0,0,0.3);
   }
-  .modal-overlay.open .modal-box{ transform:translateY(0) scale(1); }
   .modal-head{
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 20px;
+    padding:14px 18px;
     border-bottom:1px solid var(--line);
-    flex-shrink:0;
   }
-  .modal-head h3{ font-family:var(--font-serif); font-size:1.1rem; font-weight:700; }
-  .modal-actions{ display:flex; gap:10px; align-items:center; }
-  .icon-btn{
-    width:36px; height:36px; border-radius:50%;
-    display:flex; align-items:center; justify-content:center;
-    background:var(--panel-bg); border:none; cursor:pointer;
-    transition:background 0.2s, transform 0.15s;
+  .modal-head span{ font-weight:700; font-size:0.95rem; }
+  .modal-actions{ display:flex; align-items:center; gap:10px; }
+  .modal-actions a{
+    font-size:0.83rem; font-weight:600; color:var(--accent);
+    background:var(--accent-soft); padding:7px 13px; border-radius:7px;
   }
-  .icon-btn:hover{ background:var(--line); }
-  .icon-btn:active{ transform:scale(0.92); }
-  .icon-btn svg{ width:16px; height:16px; }
-  .modal-body{ flex:1; overflow:hidden; }
-  .modal-body iframe{ width:100%; height:100%; border:none; }
+  .modal-actions button{
+    width:30px; height:30px; border-radius:50%; border:none;
+    background:#F2F2F5; color:var(--ink-soft); font-size:15px; cursor:pointer;
+  }
+  .modal-actions button:hover{ background:#E7E7EC; }
+  .modal-box iframe{ flex:1; width:100%; border:none; }
 
   /* ---------------- LIGHTBOX ---------------- */
   .lightbox{
     position:fixed; inset:0; z-index:300;
-    background:rgba(6,9,12,0.92);
-    display:flex; align-items:center; justify-content:center;
-    opacity:0; visibility:hidden;
-    transition:opacity 0.25s ease, visibility 0.25s;
+    background:rgba(10,11,13,0.92);
+    display:none;
+    align-items:center; justify-content:center;
   }
-  .lightbox.open{ opacity:1; visibility:visible; }
+  .lightbox.open{ display:flex; }
   .lightbox img{
-    max-width:min(86vw, 760px); max-height:78vh;
-    border-radius:14px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.5);
-    background:#fff;
+    max-width:88vw; max-height:82vh;
+    border-radius:10px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.4);
   }
-  .lightbox-close{
-    position:absolute; top:24px; right:24px;
-    width:44px; height:44px; border-radius:50%;
-    background:rgba(255,255,255,0.12); border:none; cursor:pointer;
+  .lb-close, .lb-prev, .lb-next{
+    position:absolute;
+    background:rgba(255,255,255,0.1);
+    color:#fff; border:none; cursor:pointer;
     display:flex; align-items:center; justify-content:center;
     transition:background 0.2s;
   }
-  .lightbox-close:hover{ background:rgba(255,255,255,0.22); }
-  .lightbox-close svg{ width:18px; height:18px; stroke:#fff; }
-  .lightbox-nav{
-    position:absolute; top:50%; transform:translateY(-50%);
-    width:52px; height:52px; border-radius:50%;
-    background:rgba(255,255,255,0.12); border:none; cursor:pointer;
-    display:flex; align-items:center; justify-content:center;
-    transition:background 0.2s;
-  }
-  .lightbox-nav:hover{ background:rgba(255,255,255,0.22); }
-  .lightbox-nav svg{ width:20px; height:20px; stroke:#fff; }
-  .lightbox-prev{ left:20px; }
-  .lightbox-next{ right:20px; }
-  .lightbox-caption{
-    position:absolute; bottom:30px; left:50%; transform:translateX(-50%);
-    color:#fff; font-size:0.85rem; opacity:0.75;
-  }
-  @media (max-width:640px){
-    .lightbox-nav{ width:42px; height:42px; }
-    .lightbox-prev{ left:8px; } .lightbox-next{ right:8px; }
+  .lb-close:hover, .lb-prev:hover, .lb-next:hover{ background:rgba(255,255,255,0.2); }
+  .lb-close{ top:20px; right:20px; width:38px; height:38px; border-radius:50%; font-size:16px; }
+  .lb-prev, .lb-next{ top:50%; transform:translateY(-50%); width:44px; height:44px; border-radius:50%; font-size:20px; }
+  .lb-prev{ left:20px; }
+  .lb-next{ right:20px; }
+  .lb-counter{
+    position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+    color:#fff; font-size:0.8rem; background:rgba(255,255,255,0.12);
+    padding:5px 12px; border-radius:999px;
   }
 
   @media (prefers-reduced-motion: reduce){
-    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+    *{ transition-duration:0.01ms !important; }
   }
 
   /* ---------------- MOBILE ---------------- */
   @media (max-width: 900px){
-    .page-wrap{ flex-direction:column; box-shadow:none; }
+    .layout{ flex-direction:column; }
     .sidebar{
       position:static;
       width:100%;
       height:auto;
-      padding:36px 24px;
-      flex-direction:column;
+      padding:28px 22px;
     }
-    .avatar{ width:88px; height:88px; }
-    .side-footer{ margin-top:0; flex-direction:row; flex-wrap:wrap; gap:16px; border-top:1px solid var(--sidebar-line); }
-    .main{ padding:48px 24px 64px; max-width:100%; }
+    .side-footer{ margin-top:16px; flex-direction:row; flex-wrap:wrap; gap:16px; }
+    .main{ margin-left:0; }
+    .main-inner{ padding:36px 22px 56px; }
     .item-head{ flex-direction:column; align-items:flex-start; }
-    .modal-box{ height:92vh; }
+    .lb-prev{ left:8px; } .lb-next{ right:8px; }
   }
 </style>
 </head>
 <body>
 
-<div class="page-wrap">
+<div class="layout">
 
   <aside class="sidebar">
-    <div class="avatar-wrap">
-      <img class="avatar" src="data:image/jpeg;base64,__AVATAR_B64__" alt="Angkur Mondal">
-    </div>
+    <img class="avatar" src="profile.png" alt="Angkur Mondal">
     <h1>Angkur Mondal</h1>
     <p class="tagline">Backend engineer at Dutch-Bangla Bank PLC, applying to PhD programs in Computer Science.</p>
 
-    <button class="resume-btn" id="openResume">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-      Download Resume
+    <button class="resume-btn" id="openResume" type="button">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+      View / Download Résumé
     </button>
 
     <div class="side-block">
@@ -520,46 +452,43 @@
         <div class="vals">TypeScript, React.js, Next.js</div>
       </div>
       <div class="skill-group">
-        <div class="cat">AI &amp; ML</div>
-        <div class="vals">Python, Fast API, TensorFlow, OpenCV</div>
+        <div class="cat">ML &amp; Data</div>
+        <div class="vals">Python, FastAPI, TensorFlow, OpenCV</div>
       </div>
     </div>
 
     <div class="side-footer">
       <a href="mailto:mondal.angkur@gmail.com">mondal.angkur@gmail.com</a>
-      <a href="https://linkedin.com/in/angkur-mondal" target="_blank" rel="noopener">linkedin.com/in/angkur-mondal</a>
-      <a href="https://github.com/iAngkur" target="_blank" rel="noopener">github.com/iAngkur</a>
+      <a href="https://linkedin.com/in/angkur-mondal">linkedin.com/in/angkur-mondal</a>
+      <a href="https://github.com/iAngkur">github.com/iAngkur</a>
     </div>
   </aside>
 
   <main class="main">
+   <div class="main-inner">
 
     <section id="about">
       <div class="sec-label">About</div>
       <h2>Biography</h2>
-      <p class="reveal">I work on the systems a bank can't afford to have fail — identity, fraud monitoring, settlement — at <a href="https://www.dutchbanglabank.com" target="_blank" rel="noopener">Dutch-Bangla Bank PLC</a>. Four years in, I want to bring that production experience back to research, focused on applied machine learning.</p>
-      <p class="reveal" style="transition-delay:0.06s;">My undergraduate thesis trained convolutional networks to recognize leukemia in microscope images. I'm applying to doctoral programs to return to that kind of work, with the systems intuition I've since built in banking infrastructure.</p>
+      <p>I work on the systems a bank can't afford to have fail — identity, fraud monitoring, settlement — at <strong>Dutch-Bangla Bank PLC</strong>. Four years in, I want to bring that production experience back to research, focused on applied machine learning.</p>
+      <p>My undergraduate thesis trained convolutional networks to recognize leukemia in microscope images. I'm applying to doctoral programs to return to that kind of work, with the systems intuition I've since built in banking infrastructure.</p>
     </section>
 
     <section id="education">
       <div class="sec-label">Education</div>
       <h2>Academic Background</h2>
-      <div class="item reveal">
+      <div class="item">
         <div class="item-head">
           <h3>B.Sc. in Computer Science &amp; Engineering</h3>
           <time>2016 — 2020</time>
         </div>
         <span class="org">Khulna University of Engineering &amp; Technology · CGPA 3.48/4.00</span>
         <p class="desc">Thesis: "Acute Lymphocytic Leukemia Recognition Using Convolutional Neural Networks," supervised by Prof. Dr. Sk. Md. Masudul Ahsan.</p>
-        <div class="course-tags">
-          <span>Machine Learning</span>
-          <span>Artificial Intelligence</span>
-          <span>Image Processing &amp; Computer Vision</span>
-          <span>Data Structures</span>
-          <span>Algorithms</span>
+        <div class="course-list">
+          <span>Machine Learning</span><span>Artificial Intelligence</span><span>Image Processing &amp; Computer Vision</span><span>Data Structures</span><span>Algorithms</span>
         </div>
       </div>
-      <div class="item reveal" style="transition-delay:0.06s;">
+      <div class="item">
         <div class="item-head">
           <h3>Database Query &amp; Data Processing using Oracle</h3>
           <time>Aug 2025</time>
@@ -571,18 +500,18 @@
     <section id="experience">
       <div class="sec-label">Experience</div>
       <h2>Work History</h2>
-      <div class="item reveal">
+      <div class="item">
         <div class="item-head">
           <h3>Senior Officer — Software Engineer</h3>
           <time>Aug 2024 — Present</time>
         </div>
-        <span class="org"><a href="https://www.dutchbanglabank.com" target="_blank" rel="noopener">Dutch-Bangla Bank PLC</a></span>
+        <span class="org"><a href="https://www.dutchbanglabank.com" target="_blank" rel="noopener">Dutch-Bangla Bank PLC ↗</a></span>
         <ul>
           <li>Design enterprise banking systems supporting millions of daily transactions.</li>
           <li>Delivered the SSO Identity Provider, Transaction Monitoring System, and ATM Dispute Settlement System.</li>
         </ul>
       </div>
-      <div class="item reveal" style="transition-delay:0.06s;">
+      <div class="item">
         <div class="item-head">
           <h3>Product Engineer</h3>
           <time>Oct 2022 — Aug 2024</time>
@@ -596,80 +525,79 @@
     </section>
 
     <section id="projects">
-      <div class="sec-label">Projects</div>
-      <h2>Selected Work</h2>
-
-      <div class="item reveal">
-        <div class="item-head"><h3>Leukemia Recognition (CNN)</h3><time>Undergraduate Thesis</time></div>
+      <div class="sec-label">Selected Work</div>
+      <h2>Projects</h2>
+      <div class="item">
+        <div class="item-head">
+          <h3>Leukemia Recognition (CNN)</h3>
+          <time>Undergraduate Thesis</time>
+        </div>
         <p class="desc">Trained convolutional networks to classify leukemia from blood-smear images, reaching 87% accuracy, with a supporting cell-localization pipeline in OpenCV.</p>
         <div class="stack">Python · TensorFlow/Keras · OpenCV</div>
-        <div class="image-stack" data-gallery="thesis"></div>
+        <div class="img-stack" data-project="leukemia">
+          <div class="stack-tile t1"></div><div class="stack-tile t2"></div><div class="stack-tile t3"></div>
+          <span class="stack-count"></span>
+        </div>
       </div>
-
-      <div class="item reveal" style="transition-delay:0.06s;">
-        <div class="item-head"><h3>SSO Identity Provider</h3><time>2025</time></div>
+      <div class="item">
+        <div class="item-head">
+          <h3>SSO Identity Provider</h3>
+          <time>2025</time>
+        </div>
         <p class="desc">Centralized sign-on integrating 10+ internal banking applications for 10,000+ employees.</p>
         <div class="stack">Oracle PL/SQL · Spring Boot · React.js</div>
-        <div class="image-stack" data-gallery="sso"></div>
+        <div class="img-stack" data-project="sso">
+          <div class="stack-tile t1"></div><div class="stack-tile t2"></div><div class="stack-tile t3"></div>
+          <span class="stack-count"></span>
+        </div>
       </div>
-
-      <div class="item reveal" style="transition-delay:0.12s;">
-        <div class="item-head"><h3>Transaction Monitoring System</h3><time>2024 — 2025</time></div>
+      <div class="item">
+        <div class="item-head">
+          <h3>Transaction Monitoring System</h3>
+          <time>2024 — 2025</time>
+        </div>
         <p class="desc">Fraud-detection platform analyzing 100,000+ daily transactions across five core banking systems.</p>
         <div class="stack">React.js · Spring Boot · Oracle PL/SQL</div>
-        <div class="image-stack" data-gallery="tms"></div>
+        <div class="img-stack" data-project="tms">
+          <div class="stack-tile t1"></div><div class="stack-tile t2"></div><div class="stack-tile t3"></div>
+          <span class="stack-count"></span>
+        </div>
       </div>
     </section>
 
     <section id="current-projects">
-      <div class="sec-label">Current Projects</div>
-      <h2>In Progress — AI &amp; ML</h2>
-
-      <div class="item reveal">
-        <div class="item-head"><h3>Project title — update me<span class="status-badge">In Progress</span></h3></div>
-        <p class="desc"><em>Add a short description of what this project explores and what you've found so far.</em></p>
-        <div class="image-stack" data-gallery="proj1"></div>
-        <div class="link-row">
-          <a class="link-pill" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            Open in Colab
-          </a>
-          <a class="link-pill ghost" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            View on Kaggle
-          </a>
+      <div class="sec-label">In Progress</div>
+      <h2>Current Projects</h2>
+      <div class="item">
+        <div class="item-head">
+          <h3>Project Title</h3>
+          <time>2026</time>
+        </div>
+        <p class="desc">One-line description of what you're building and why — replace with your current AI/ML project.</p>
+        <div class="stack">Python · Tech Stack</div>
+        <div class="links-row">
+          <a href="#" target="_blank" rel="noopener">Open in Colab ↗</a>
+          <a href="#" target="_blank" rel="noopener">View on Kaggle ↗</a>
+        </div>
+        <div class="img-stack" data-project="current1">
+          <div class="stack-tile t1"></div><div class="stack-tile t2"></div><div class="stack-tile t3"></div>
+          <span class="stack-count"></span>
         </div>
       </div>
-
-      <div class="item reveal" style="transition-delay:0.06s;">
-        <div class="item-head"><h3>Project title — update me<span class="status-badge">In Progress</span></h3></div>
-        <p class="desc"><em>Add a short description of what this project explores and what you've found so far.</em></p>
-        <div class="image-stack" data-gallery="proj2"></div>
-        <div class="link-row">
-          <a class="link-pill" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            Open in Colab
-          </a>
-          <a class="link-pill ghost" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            View on Kaggle
-          </a>
+      <div class="item">
+        <div class="item-head">
+          <h3>Project Title</h3>
+          <time>2026</time>
         </div>
-      </div>
-
-      <div class="item reveal" style="transition-delay:0.12s;">
-        <div class="item-head"><h3>Project title — update me<span class="status-badge">In Progress</span></h3></div>
-        <p class="desc"><em>Add a short description of what this project explores and what you've found so far.</em></p>
-        <div class="image-stack" data-gallery="proj3"></div>
-        <div class="link-row">
-          <a class="link-pill" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            Open in Colab
-          </a>
-          <a class="link-pill ghost" href="#" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-            View on Kaggle
-          </a>
+        <p class="desc">One-line description of what you're building and why — replace with your current AI/ML project.</p>
+        <div class="stack">Python · Tech Stack</div>
+        <div class="links-row">
+          <a href="#" target="_blank" rel="noopener">Open in Colab ↗</a>
+          <a href="#" target="_blank" rel="noopener">View on Kaggle ↗</a>
+        </div>
+        <div class="img-stack" data-project="current2">
+          <div class="stack-tile t1"></div><div class="stack-tile t2"></div><div class="stack-tile t3"></div>
+          <span class="stack-count"></span>
         </div>
       </div>
     </section>
@@ -680,11 +608,12 @@
       <p>Open to conversations with prospective PhD supervisors working on applied machine learning, systems, or fintech security.</p>
       <div class="contact-row">
         <a href="mailto:mondal.angkur@gmail.com">Email</a>
-        <a href="https://linkedin.com/in/angkur-mondal" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/iAngkur" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/in/angkur-mondal">LinkedIn</a>
+        <a href="https://github.com/iAngkur">GitHub</a>
       </div>
     </section>
 
+   </div>
   </main>
 </div>
 
@@ -692,165 +621,109 @@
 <div class="modal-overlay" id="resumeModal">
   <div class="modal-box">
     <div class="modal-head">
-      <h3>Resume — Angkur Mondal</h3>
+      <span>Résumé</span>
       <div class="modal-actions">
-        <a class="icon-btn" id="downloadResume" download="Angkur_Mondal_Resume.pdf" title="Download">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M5 21h14"/></svg>
-        </a>
-        <button class="icon-btn" id="closeResume" title="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-        </button>
+        <a id="resumeDownload" href="#" target="_blank" rel="noopener">Download</a>
+        <button id="resumeClose" type="button">✕</button>
       </div>
     </div>
-    <div class="modal-body">
-      <iframe id="resumeFrame" src="" title="Resume PDF"></iframe>
-    </div>
+    <iframe id="resumeFrame" src="" title="Resume"></iframe>
   </div>
 </div>
 
 <!-- Lightbox -->
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-nav lightbox-prev" id="lbPrev">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-  </button>
-  <img id="lbImg" src="" alt="">
-  <button class="lightbox-nav lightbox-next" id="lbNext">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-  </button>
-  <div class="lightbox-caption" id="lbCaption"></div>
-  <button class="lightbox-close" id="lbClose">
-    <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-  </button>
+  <button class="lb-close" id="lbClose" type="button">✕</button>
+  <button class="lb-prev" id="lbPrev" type="button">‹</button>
+  <img id="lbImage" src="" alt="Project screenshot">
+  <button class="lb-next" id="lbNext" type="button">›</button>
+  <div class="lb-counter" id="lbCounter"></div>
 </div>
 
 <script>
-  // ---------- scroll reveal ----------
-  const els = document.querySelectorAll('.reveal');
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); }
-    });
-  }, { threshold:0.15 });
-  els.forEach(el => io.observe(el));
+/* =========================================================================
+   1) RESUME — Google Drive setup
+   - Upload your resume PDF to Google Drive.
+   - Right-click it → Share → "Anyone with the link" → Viewer.
+   - Copy the FILE ID from the share link:
+     https://drive.google.com/file/d/FILE_ID_IS_HERE/view
+   - Paste that ID below.
+   ========================================================================= */
+  const RESUME_DRIVE_FILE_ID = "1ESGUzS9SuR3C1-qK7EzVVilso1zRYzyG";
 
-  // ---------- resume modal ----------
-  const RESUME_DATA_URI = "data:application/pdf;base64,__RESUME_B64__";
-  const resumeModal = document.getElementById('resumeModal');
-  const resumeFrame = document.getElementById('resumeFrame');
-  const openResumeBtn = document.getElementById('openResume');
-  const closeResumeBtn = document.getElementById('closeResume');
-  const downloadResumeBtn = document.getElementById('downloadResume');
-  downloadResumeBtn.href = RESUME_DATA_URI;
-
-  function openResume(){
-    resumeFrame.src = RESUME_DATA_URI;
-    resumeModal.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeResumeModal(){
-    resumeModal.classList.remove('open');
-    document.body.style.overflow = '';
-    setTimeout(()=>{ resumeFrame.src = ''; }, 300);
-  }
-  openResumeBtn.addEventListener('click', openResume);
-  closeResumeBtn.addEventListener('click', closeResumeModal);
-  resumeModal.addEventListener('click', (e)=>{ if(e.target === resumeModal) closeResumeModal(); });
-
-  // ---------- placeholder mockup image generator ----------
-  function mockSVG(kind, tint){
-    const bg = '#F2F0E9';
-    const stroke = tint;
-    let inner = '';
-    if(kind === 'bars'){
-      inner = [40,70,55,90,35].map((h,i)=>`<rect x="${20+i*36}" y="${120-h}" width="22" height="${h}" rx="3" fill="${stroke}" opacity="${0.55+ i*0.08}"/>`).join('');
-    } else if(kind === 'scatter'){
-      const pts = [[30,90],[60,60],[90,100],[120,40],[150,70],[70,30],[110,85],[160,50]];
-      inner = pts.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="6" fill="${stroke}" opacity="0.7"/>`).join('');
-    } else if(kind === 'matrix'){
-      let cells = '';
-      for(let r=0;r<4;r++){ for(let c=0;c<4;c++){
-        const op = (0.25 + ((r+c)%4)*0.18).toFixed(2);
-        cells += `<rect x="${20+c*36}" y="${20+r*24}" width="32" height="20" rx="3" fill="${stroke}" opacity="${op}"/>`;
-      }}
-      inner = cells;
-    } else if(kind === 'network'){
-      inner = `
-        <line x1="40" y1="40" x2="100" y2="70" stroke="${stroke}" stroke-width="2" opacity="0.5"/>
-        <line x1="100" y1="70" x2="160" y2="35" stroke="${stroke}" stroke-width="2" opacity="0.5"/>
-        <line x1="100" y1="70" x2="120" y2="110" stroke="${stroke}" stroke-width="2" opacity="0.5"/>
-        <line x1="40" y1="40" x2="60" y2="105" stroke="${stroke}" stroke-width="2" opacity="0.5"/>
-        <circle cx="40" cy="40" r="8" fill="${stroke}"/>
-        <circle cx="100" cy="70" r="10" fill="${stroke}"/>
-        <circle cx="160" cy="35" r="7" fill="${stroke}"/>
-        <circle cx="120" cy="110" r="7" fill="${stroke}"/>
-        <circle cx="60" cy="105" r="6" fill="${stroke}"/>`;
-    } else if(kind === 'lines'){
-      inner = [1,2,3,4,5].map(i=>`<rect x="20" y="${20+i*18}" width="${140 - i*14}" height="8" rx="4" fill="${stroke}" opacity="${0.35+i*0.1}"/>`).join('');
-    } else {
-      inner = `<path d="M10,90 Q40,20 70,80 T130,50 T190,90" stroke="${stroke}" stroke-width="3" fill="none" opacity="0.7"/>`;
-    }
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 130"><rect width="200" height="130" rx="10" fill="${bg}"/>${inner}</svg>`;
-    return 'data:image/svg+xml;base64,' + btoa(svg);
-  }
-
-  const galleries = {
-    thesis: [ {img:mockSVG('matrix','#92620F'), cap:'Fig. 1 — Confusion matrix (placeholder)'}, {img:mockSVG('scatter','#92620F'), cap:'Fig. 2 — Feature scatter (placeholder)'} ],
-    sso:    [ {img:mockSVG('lines','#0B7FE0'), cap:'Fig. 1 — Login flow (placeholder)'}, {img:mockSVG('network','#0B7FE0'), cap:'Fig. 2 — Session graph (placeholder)'} ],
-    tms:    [ {img:mockSVG('bars','#B23A2E'), cap:'Fig. 1 — Alert volume (placeholder)'}, {img:mockSVG('curve','#B23A2E'), cap:'Fig. 2 — Detection trend (placeholder)'} ],
-    proj1:  [ {img:mockSVG('bars','#3D8361'), cap:'Fig. 1 — placeholder'}, {img:mockSVG('scatter','#3D8361'), cap:'Fig. 2 — placeholder'} ],
-    proj2:  [ {img:mockSVG('network','#7A5AF8'), cap:'Fig. 1 — placeholder'}, {img:mockSVG('matrix','#7A5AF8'), cap:'Fig. 2 — placeholder'} ],
-    proj3:  [ {img:mockSVG('curve','#C9862B'), cap:'Fig. 1 — placeholder'}, {img:mockSVG('lines','#C9862B'), cap:'Fig. 2 — placeholder'} ],
+/* =========================================================================
+   2) PROJECT IMAGES — GitHub setup
+   - Create a public GitHub repo (e.g. "portfolio-assets").
+   - Upload each project's screenshots into its own folder.
+   - Open an image on GitHub → click "Download" / "..." → "Copy raw link"
+     (or use: https://raw.githubusercontent.com/USERNAME/REPO/main/FOLDER/FILE.jpg)
+   - Paste the URLs into the matching array below.
+   - Leave an array empty [] to hide that project's photo stack.
+   ========================================================================= */
+  const projectImages = {
+    leukemia:  ["https://github.com/donnemartin/system-design-primer/raw/master/images/4edXG0T.png", "https://github.com/donnemartin/system-design-primer/raw/master/images/jrUBAF7.png"], // e.g. ["https://raw.githubusercontent.com/iAngkur/portfolio-assets/main/leukemia/1.jpg", "...2.jpg"]
+    sso:       ["https://github.com/donnemartin/system-design-primer/raw/master/images/jrUBAF7.png", "https://github.com/donnemartin/system-design-primer/raw/master/images/4edXG0T.png"],
+    tms:       [],
+    current1:  [],
+    current2:  []
   };
 
-  document.querySelectorAll('.image-stack').forEach(stackEl => {
-    const key = stackEl.getAttribute('data-gallery');
-    const list = galleries[key] || [];
-    list.forEach((item, idx) => {
-      const btn = document.createElement('button');
-      btn.className = 'thumb';
-      btn.innerHTML = `<img src="${item.img}" alt="${item.cap}">`;
-      btn.addEventListener('click', () => openLightbox(key, idx));
-      stackEl.appendChild(btn);
+  // ---- Resume modal wiring ----
+  const resumeModal = document.getElementById('resumeModal');
+  const resumeFrame = document.getElementById('resumeFrame');
+  const resumeDownload = document.getElementById('resumeDownload');
+  document.getElementById('openResume').addEventListener('click', () => {
+    const previewUrl = `https://drive.google.com/file/d/${RESUME_DRIVE_FILE_ID}/preview`;
+    const downloadUrl = `https://drive.google.com/uc?export=download&id=${RESUME_DRIVE_FILE_ID}`;
+    resumeFrame.src = previewUrl;
+    resumeDownload.href = downloadUrl;
+    resumeModal.classList.add('open');
+  });
+  document.getElementById('resumeClose').addEventListener('click', closeResume);
+  resumeModal.addEventListener('click', (e) => { if(e.target === resumeModal) closeResume(); });
+  function closeResume(){ resumeModal.classList.remove('open'); resumeFrame.src=''; }
+
+  // ---- Populate image stacks ----
+  document.querySelectorAll('.img-stack').forEach(stack => {
+    const key = stack.dataset.project;
+    const images = projectImages[key] || [];
+    if(images.length === 0) return; // stays hidden
+    stack.classList.add('has-images');
+    const tiles = stack.querySelectorAll('.stack-tile');
+    tiles.forEach((tile, i) => {
+      if(images[i]) tile.style.backgroundImage = `url('${images[i]}')`;
+      else if(images[0]) tile.style.backgroundImage = `url('${images[0]}')`;
     });
+    stack.querySelector('.stack-count').textContent = images.length + (images.length === 1 ? ' photo' : ' photos');
+    stack.addEventListener('click', () => openLightbox(images, 0));
   });
 
-  // ---------- lightbox ----------
+  // ---- Lightbox ----
   const lightbox = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  const lbCaption = document.getElementById('lbCaption');
-  let currentGallery = null, currentIndex = 0;
+  const lbImage = document.getElementById('lbImage');
+  const lbCounter = document.getElementById('lbCounter');
+  let lbImages = [];
+  let lbIndex = 0;
 
-  function openLightbox(key, idx){
-    currentGallery = key; currentIndex = idx;
-    renderLightbox();
+  function openLightbox(images, index){
+    lbImages = images; lbIndex = index;
+    updateLightbox();
     lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
   }
-  function renderLightbox(){
-    const list = galleries[currentGallery];
-    const item = list[currentIndex];
-    lbImg.src = item.img;
-    lbImg.alt = item.cap;
-    lbCaption.textContent = `${item.cap}  ·  ${currentIndex+1} / ${list.length}`;
+  function updateLightbox(){
+    lbImage.src = lbImages[lbIndex];
+    lbCounter.textContent = (lbIndex + 1) + ' / ' + lbImages.length;
   }
-  function closeLightbox(){
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  function nextImg(){ const list = galleries[currentGallery]; currentIndex = (currentIndex+1) % list.length; renderLightbox(); }
-  function prevImg(){ const list = galleries[currentGallery]; currentIndex = (currentIndex-1+list.length) % list.length; renderLightbox(); }
-
+  function closeLightbox(){ lightbox.classList.remove('open'); }
   document.getElementById('lbClose').addEventListener('click', closeLightbox);
-  document.getElementById('lbNext').addEventListener('click', nextImg);
-  document.getElementById('lbPrev').addEventListener('click', prevImg);
-  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
-  document.addEventListener('keydown', (e)=>{
-    if(lightbox.classList.contains('open')){
-      if(e.key === 'Escape') closeLightbox();
-      if(e.key === 'ArrowRight') nextImg();
-      if(e.key === 'ArrowLeft') prevImg();
-    }
-    if(e.key === 'Escape' && resumeModal.classList.contains('open')) closeResumeModal();
+  document.getElementById('lbPrev').addEventListener('click', () => { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; updateLightbox(); });
+  document.getElementById('lbNext').addEventListener('click', () => { lbIndex = (lbIndex + 1) % lbImages.length; updateLightbox(); });
+  lightbox.addEventListener('click', (e) => { if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => {
+    if(!lightbox.classList.contains('open')) return;
+    if(e.key === 'Escape') closeLightbox();
+    if(e.key === 'ArrowLeft') document.getElementById('lbPrev').click();
+    if(e.key === 'ArrowRight') document.getElementById('lbNext').click();
   });
 </script>
 
